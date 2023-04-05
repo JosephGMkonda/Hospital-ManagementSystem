@@ -1,0 +1,141 @@
+{% extends 'Admin/base.html' %}
+
+{% block page_title %} Edit Staff | ( {{Doctor.admin.first_name}}  {{Doctor.admin.last_name}}){% endblock page_title %}
+
+{% load static %}
+{% block content %}
+
+
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <!-- left column -->
+            <div class="col-md-11">
+              <!-- general form elements -->
+              <div class="card card-primary">
+                <div class="card-header">
+                  <h3 class="card-title">Edit Doctor</h3>
+                </div>
+                <!-- /.card-header -->
+                <!-- form start -->
+                <form role="form" action="/edit_doctor_save" method="POST">
+                    {% csrf_token %}
+                  <div class="card-body">
+                    <div class="form-group">
+                      <label for="exampleInputEmail1">Email</label>
+                      <input 
+                      type="email" 
+                      class="form-control"
+                      id="email"
+                      placeholder="Enter email"
+                      name='email'
+                      value={{doctor.admin.email}}
+                      >
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">username</label>
+                        <input 
+                        type="text" 
+                        class="form-control" 
+                        id="username" 
+                        placeholder="username"
+                        name='username'
+                        value={{doctor.admin.username}}
+                        >
+                      </div>
+                      <div class="form-group">
+                          <label for="exampleInputPassword1">First Name</label>
+                          <input 
+                          type="text" 
+                          class="form-control" 
+                          id="first_name" 
+                          placeholder="First Name"
+                          name='first_name'
+                          value={{doctor.admin.first_name}}
+                         
+                          >
+                          <div class="form-group">
+                            <label for="exampleInputPassword1">Last Name</label>
+                            <input 
+                            type="text" 
+                            class="form-control" 
+                            id="last_name" 
+                            placeholder="Last Name"
+                            name='last_name'
+                            value={{doctor.admin.last_name}}
+                           
+                            >
+                            <input 
+                            type="hidden" 
+                            
+                            
+                            name='staff_id'
+                            value={{doctor.admin.id}}
+                           
+                            >
+                      </div>
+                       <label>gender</label>
+                       <div class="form-check">
+                        <input type="checkbox" class="form-check-input" id="Male" name='gender'>
+                        <label class="form-check-label" for="Male">Male</label>
+                      </div>
+                      <div class="form-check">
+                        <input type="checkbox" class="form-check-input" id="Female" name="gender">
+                        <label class="form-check-label" for="Female">Female</label>
+                      </div>
+                    
+
+
+                      <div class="form-group">
+                        <label >Contact Number</label>
+                        <input 
+                        type="text" 
+                        class="form-control" 
+                        id="ContactNumber" 
+                        name="contact_number"
+                        value={{doctor.Contact_Number}}
+                        placeholder="ContactNumber">
+                      </div>
+
+
+                      
+                     <div class="form-group">
+
+                      {% if messages %}
+                      <div class="col-12">
+                        {% for message in messages %}
+                        {% if message.tags == "error" %}
+                        <div class="alert alert-danger">{{message}}</div>
+                        {% endif %}
+
+                        {% if message.tags == "success" %}
+                        <div class="alert alert-success">{{message}}</div>
+                        {% endif %}
+                        {% endfor %}
+                      </div>
+                      {% endif %}
+
+                    </div>
+                   
+                     
+                    
+                  
+                 
+  
+                  <div class="card-footer">
+                    <button type="submit" class="btn btn-primary btn-block">Save Doctor</button>
+                  </div>
+                </form>
+              </div>
+            
+  
+            </div>
+            
+          </div>
+   
+        </div>
+
+  </section>
+
+
+{% endblock %}
